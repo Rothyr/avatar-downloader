@@ -32,7 +32,7 @@ request.get(url)
        .pipe(fs.createWriteStream(filePath + '.jpg'))
      }
 
-getRepoContributors("jquery", "jquery", function(error, result) {
+getRepoContributors(process.argv[2], process.argv[3], function(error, result) {
   console.log("Errors: ", error);
   result.forEach(function(contributor) {
     downloadImageByURL (contributor.avatar_url, contributor.login)
