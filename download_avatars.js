@@ -3,7 +3,12 @@
 var request = require('request');
 var secrets = require('./secrets.js')
 var fs = require('fs');
+var argvs = process.argv;
 
+if (argvs.length < 4) {
+  console.log("Not enough arguments provided!");
+  process.exit();
+}
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
