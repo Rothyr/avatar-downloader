@@ -24,19 +24,20 @@ function getRepoContributors(repoOwner, repoName, callback) {
 
 }
 
-getRepoContributors("jquery", "jquery", function(error, result) {
-  console.log("Errors: ", error);
-  result.forEach(function(contributor){
-    console.log(contributor.avatar_url);
-  })
-});
-
-
 function downloadImageByURL (url, filePath) {
 request.get(url)
        .on('error', function (err) {
          console.log('Error Encounted')
        })
-       .pipe(fs.createWriteStream(filePath))
-};
+       .pipe(fs.createWriteStream(filePath + '.jpg'))
+     }
+
+getRepoContributors("jquery", "jquery", function(error, result) {
+  console.log("Errors: ", error);
+  result.forEach(function(contributor) {
+    downloadImageByURL (contributor.avatar_url, contributor.login)
+  })
+});
+
+
 
